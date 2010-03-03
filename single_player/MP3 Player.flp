@@ -1,0 +1,13 @@
+﻿<flash_project name="MP3 Player" version="1">
+    <project_folder name="controls" expanded="true">
+        <project_file path="./controls/VolControl.as" filetype="as" />
+        <project_file path="./controls/BackBtn.as" filetype="as" />
+        <project_file path="./controls/ForwardBtn.as" filetype="as" />
+        <project_file path="./controls/MuteBtn.as" filetype="as" />
+        <project_file path="./controls/PlayPauseBtn.as" filetype="as" />
+        <project_file path="./controls/SeekControl.as" filetype="as" />
+        <project_file path="./controls/StopBtn.as" filetype="as" />
+    </project_folder>
+    <project_file path="./AS3MP3Player.fla" filetype="fla" profile="" />
+    <project_file path="./Mp3Main.as" filetype="as" />
+</flash_project>
