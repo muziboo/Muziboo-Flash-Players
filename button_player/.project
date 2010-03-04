@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>MuzibooASPlayer</name>
+	<name>MuzibooASPlayer.as</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -14,11 +14,4 @@
 	<natures>
 		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>[source path] player</name>
-			<type>2</type>
-			<location>/home/prateek/work/muziboo/muzsvn/extras/flex/Player/player</location>
-		</link>
-	</linkedResources>
 </projectDescription>

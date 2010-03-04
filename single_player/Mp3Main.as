@@ -24,7 +24,7 @@ package {
   import flash.net.*;
 	
 	public class Mp3Main extends MovieClip{
-		public var position:Number;
+	public var position:Number;
     public var player:Player;
     public var song_id:String;
     public var passphrase:String;
@@ -50,6 +50,7 @@ package {
       player.addEventListener("complete",onXMLLoad);
       player.addEventListener(ProgressEvent.PROGRESS,updateLoadBar);
       player.addEventListener(Event.SOUND_COMPLETE,onPlaybackComplete);
+      player.addEventListener("new_playback_started",onNewPlayback);
 
       title_mc.text = 'Loading ... please wait'
       currentTime_mc.text = '00:00'
@@ -159,6 +160,11 @@ package {
     private function onPlaybackComplete(event:Event):void {
       playPause_mc.playing = false;
       playPause_mc.gotoAndStop('play');
+			ExternalInterface.call("Muziboo.Player.singlePlayerComplete");			
+    }
+    
+    private function onNewPlayback(event:Event):void {
+			ExternalInterface.call("Muziboo.Player.singlePlayerStart");			
     }
 
     private function updateLoadBar(event:ProgressEvent):void {
@@ -209,11 +215,6 @@ package {
 				obj.playing = false;
 			} else {
 				obj.gotoAndStop('pause_over');
-/*        if(this.xmlLoaded){
-          player.loadMp3FileFromXML();
-        }else{
-          this.autoplay = true;
-        } */
         // This time autoplay is true so whenever the xml is loaded, the song is played
         player.playMuzibooSong(song_id,true, passphrase);
 				obj.playing = true;

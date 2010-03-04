@@ -60,12 +60,6 @@ package
 				this.muzSong.addEventListener(Event.COMPLETE,onSongLoaded);
 				this.muzSong.addEventListener(Event.OPEN, onLoadOpen);
 				this.muzSong.addEventListener(ProgressEvent.PROGRESS, onLoadProgress);		
-	      		// Callback for play count
-     		this.muzStatsCallback(songID);
-	      		            
-       	this.playTimer = new Timer(this.progressInterval);
-       	this.playTimer.addEventListener(TimerEvent.TIMER, onPlayTimer);
-       	this.playTimer.start();
         this.isMp3Loaded = true;
 			}
 			
@@ -102,6 +96,12 @@ package
   				this.sChannel = this.muzSong.play(position);
 	  			this.isPlaying = true;
 		  		this.sChannel.addEventListener(Event.SOUND_COMPLETE, onPlaybackComplete);
+       	  this.playTimer.start();
+          if(position==0){
+  	        // Played from start. Callback for play count
+         		this.muzStatsCallback();
+            dispatchEvent(new Event("new_playback_started"));
+          }
         }else{
           this.loadMp3FileFromXML();
         }
@@ -117,8 +117,10 @@ package
 			
 			private function onPlaybackComplete(event:Event):void{
 					// Playback Complete .. call the js function
-					trace('Playback complete');
-					this.unloadMp3File();
+          this.playTimer.stop();
+    			var estimatedLength:int = Math.ceil(this.muzSong.length / (this.muzSong.bytesLoaded / this.muzSong.bytesTotal));
+    			var progEvent:ProgressEvent = new ProgressEvent(PLAY_PROGRESS, false, false, 0, 10);
+    			this.dispatchEvent(progEvent);
 					this.dispatchEvent(event.clone());
 //					ExternalInterface.call("Muziboo.Player.onComplete");
 			}
@@ -146,8 +148,8 @@ package
 				trace('Error in loading mp3');
 			}
 			
-			private function muzStatsCallback(songID):void{
-				var muzibooCallbackURL:String = 'http://www.muziboo.com/song/played/'+songID+'?state=start';
+			private function muzStatsCallback():void{
+				var muzibooCallbackURL:String = 'http://www.muziboo.com/song/played/'+this.muzSongID+'?state=start';
 				var muzibooCallbackRequest:URLRequest = new URLRequest(muzibooCallbackURL);
 				new URLLoader(muzibooCallbackRequest);
 			}
@@ -155,6 +157,7 @@ package
 			// Autoplay is true because we want button players to play as soon as XML is loaded
 			public function playMuzibooSong(songID:String, autoPlay:Boolean=true, passphrase:String=null):void{
 				this.autoplay = autoPlay;
+        this.muzSongID = songID;
         		if(!this.isXMLLoaded){
               if(!this.isXMLLoading){
           			this.muzibooXMLParser = new MuzibooXMLParser(songID,passphrase);
@@ -183,6 +186,8 @@ package
 		public function Player()
 		{
 			this.sndTrans = new SoundTransform(1);
+      this.playTimer = new Timer(this.progressInterval);
+      this.playTimer.addEventListener(TimerEvent.TIMER, onPlayTimer);
 		}
 	}
 }
