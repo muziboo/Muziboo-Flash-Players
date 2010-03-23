@@ -13,9 +13,11 @@ package controls {
 	
 	public class PlayPauseBtn extends MovieClip {
 		public var playing:Boolean;
+		public var over_and_stopped:Boolean;
 		
 		public function PlayPauseBtn() {
 			this.playing = false;
+      this.over_and_stopped = false;
 			this.mouseChildren = false;
 			this.stop();
 		}

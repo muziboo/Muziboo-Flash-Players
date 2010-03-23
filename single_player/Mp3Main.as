@@ -159,7 +159,9 @@ package {
 
     private function onPlaybackComplete(event:Event):void {
       playPause_mc.playing = false;
-      playPause_mc.gotoAndStop('play');
+//      playPause_mc.gotoAndStop('play');
+      playPause_mc.gotoAndStop('replay');
+      playPause_mc.over_and_stopped = true;
 			ExternalInterface.call("Muziboo.Player.singlePlayerComplete");			
     }
     
@@ -184,15 +186,19 @@ package {
 	/*******************PlayPause Handlers*************************/
 		private function PlayOver(event:MouseEvent):void {
 			var obj:Object = event.currentTarget;
-			if(obj.playing) {
-				obj.gotoAndStop('pause_over');
-			} else {
+      if(obj.over_and_stopped){
+        obj.gotoAndStop('replay_over');
+      }
+			else if(!obj.playing) {
 				obj.gotoAndStop('play_over');
 			}
 		}
 		private function PlayOut(event:MouseEvent):void {
 			var obj:Object = event.currentTarget;
-			if(obj.playing) {
+      if(obj.over_and_stopped){
+        obj.gotoAndStop('replay');
+      }
+      else if(obj.playing) {
 				obj.gotoAndStop('pause');
 			} else {
 				obj.gotoAndStop('play');
@@ -201,9 +207,11 @@ package {
 		private function PlayDown(event:MouseEvent):void {
 			var obj:Object = event.currentTarget;
 			if(obj.playing) {
-				obj.gotoAndStop('pause_down');
+				obj.gotoAndStop('pause');
 			} else {
-				obj.gotoAndStop('play_down');
+        if(!obj.over_and_stopped){
+  				obj.gotoAndStop('play');
+        }
 			}
 		}
 		/*Needs to switch between a pause and play button.*/
@@ -214,7 +222,8 @@ package {
         player.pauseSong();
 				obj.playing = false;
 			} else {
-				obj.gotoAndStop('pause_over');
+				obj.over_and_stopped = false;
+				obj.gotoAndStop('pause');
         // This time autoplay is true so whenever the xml is loaded, the song is played
         player.playMuzibooSong(song_id,true, passphrase);
 				obj.playing = true;
