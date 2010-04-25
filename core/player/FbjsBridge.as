@@ -259,7 +259,7 @@ package {
 		private function ensureReceive():void {
 			if (!_receive) {
 				_receive = new LocalConnection();
-				_receive.allowDomain("apps.facebook.com", "apps.*.facebook.com", "facebook.com");
+				_receive.allowDomain("*");
 				_receive.client = {};
 			}
 			if (!_receiveConnected) {
