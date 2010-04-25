@@ -28,8 +28,6 @@
 package {
 	import flash.net.LocalConnection;
 	import flash.utils.Dictionary;
-	
-	import mx.core.Application;
 
 	/**
 	 *  Manages delegation of ExternalInterface calls to FBJS through the fbjs_bridge SWF.
@@ -44,7 +42,8 @@ package {
 		/**
 		 *  Constructor
 		 */
-		public function FbjsBridge() {
+		public function FbjsBridge(params:Object) {
+			paramList = params;
 			super();
 		}
 
@@ -58,6 +57,7 @@ package {
 		 *  @private
 		 */
 		private var _callbacks:Dictionary = new Dictionary();
+		private var paramList:Object;
 
 		/**
 		 *  @private
@@ -259,7 +259,7 @@ package {
 		private function ensureReceive():void {
 			if (!_receive) {
 				_receive = new LocalConnection();
-				_receive.allowDomain("apps.facebook.com", "apps.*.facebook.com");
+				_receive.allowDomain("apps.facebook.com", "apps.*.facebook.com", "facebook.com");
 				_receive.client = {};
 			}
 			if (!_receiveConnected) {
@@ -281,10 +281,10 @@ package {
 		 *  @private
 		 */
 		private function generateReceiveID():String {
-			var application:Application = Application.application as Application;
-			if (application && application.parameters && application.parameters.hasOwnProperty("fb_fbjs_connection")) {
-				return Application(Application.application).parameters.fb_fbjs_connection;
-			}
+      if (paramList.fb_fbjs_connection){
+        trace('receiveID: '+ paramList.fb_fbjs_connection);
+        return paramList.fb_fbjs_connection;
+      }
 			return null;
 		}
 
@@ -292,10 +292,10 @@ package {
 		 *  @private
 		 */
 		private function generateSendID():String {
-			var application:Application = Application.application as Application;
-			if (application && application.parameters && application.parameters.hasOwnProperty("fb_local_connection")) {
-				return Application(Application.application).parameters.fb_local_connection;
-			}
+      if (paramList.fb_local_connection){
+        trace('sendID: '+ paramList.fb_local_connection);
+        return paramList.fb_local_connection;
+      }
 			return null;
 		}
 	}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actionScriptProperties version="3" mainApplicationPath="FBPlayer.as">
+  <compiler additionalCompilerArguments="" copyDependentFiles="true" generateAccessible="false" strict="true" warn="true" htmlGenerate="true" htmlPlayerVersionCheck="true" htmlPlayerVersion="9.0.28" htmlExpressInstall="true" htmlHistoryManagement="true" outputFolderPath="bin-debug" useApolloConfig="false" verifyDigests="true" enableModuleDebug="true">
+    <compilerSourcePath>
+      <compilerSourcePathEntry kind="1" path="/home/prateek/work/muziboo/flash/core/player" linkType="1"/>
+    </compilerSourcePath>
+    <libraryPath defaultLinkType="1">
+      <libraryPathEntry kind="4" path="">
+        <excludedEntries>
+          <libraryPathEntry kind="3" path="${PROJECT_FRAMEWORKS}/libs/automation.swc" useDefaultLinkType="false" linkType="1"/>
+          <libraryPathEntry kind="3" path="${PROJECT_FRAMEWORKS}/libs/automation_agent.swc" useDefaultLinkType="false" linkType="1"/>
+          <libraryPathEntry kind="1" path="${PROJECT_FRAMEWORKS}/locale/{locale}" linkType="1"/>
+          <libraryPathEntry kind="3" path="${PROJECT_FRAMEWORKS}/libs/automation_flashflexkit.swc" useDefaultLinkType="false" linkType="1"/>
+          <libraryPathEntry kind="3" path="${PROJECT_FRAMEWORKS}/libs/qtp.swc" useDefaultLinkType="false" linkType="1"/>
+          <libraryPathEntry kind="3" path="${PROJECT_FRAMEWORKS}/libs/rpc.swc" useDefaultLinkType="false" linkType="1"/>
+          <libraryPathEntry kind="3" path="${PROJECT_FRAMEWORKS}/libs/charts.swc" useDefaultLinkType="false" linkType="1"/>
+          <libraryPathEntry kind="3" path="${PROJECT_FRAMEWORKS}/libs/datavisualization.swc" useDefaultLinkType="false" linkType="1"/>
+          <libraryPathEntry kind="3" path="${PROJECT_FRAMEWORKS}/libs/automation_charts.swc" useDefaultLinkType="false" linkType="1"/>
+          <libraryPathEntry kind="3" path="${PROJECT_FRAMEWORKS}/libs/automation_dmv.swc" useDefaultLinkType="false" linkType="1"/>
+          <libraryPathEntry kind="3" path="${PROJECT_FRAMEWORKS}/libs/framework.swc" useDefaultLinkType="false" linkType="1"/>
+        </excludedEntries>
+      </libraryPathEntry>
+    </libraryPath>
+    <sourceAttachmentPath/>
+  </compiler>
+  <applications>
+    <application path="FBPlayer.as"/>
+  </applications>
+  <modules/>
+  <buildCSSFiles/>
+</actionScriptProperties>

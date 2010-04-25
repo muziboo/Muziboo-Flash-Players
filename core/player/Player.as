@@ -41,7 +41,9 @@ package
       }
 					
 			private function onXMLLoad(event:Event):void{
+				trace('loaded xml');
 				if(this.autoplay){				
+					trace('playing');
 					this.loadMp3FileFromXML();
 				}																		
 				this.isXMLLoaded = true;
@@ -160,6 +162,7 @@ package
         this.muzSongID = songID;
         		if(!this.isXMLLoaded){
               if(!this.isXMLLoading){
+              		trace('Starting to load xml file');
           			this.muzibooXMLParser = new MuzibooXMLParser(songID,passphrase);
         			  this.muzibooXMLParser.addEventListener("complete", this.onXMLLoad);        			       
                 this.isXMLLoading = true;
