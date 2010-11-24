@@ -53,14 +53,15 @@ package {
       player.addEventListener("new_playback_started",onNewPlayback);
 
       title_mc.text = 'Loading ... please wait'
+      wait_mc.x = 85
       currentTime_mc.text = '00:00'
       totalTime_mc.text = '00:00'
 
-      commented_mc.autoSize = "center";
-      liked_mc.autoSize = "center";
-      fav_mc.autoSize = "center";
-      downloadCount_mc.autoSize = "center";
-      played_mc.autoSize = "center";
+//      commented_mc.autoSize = "center";
+//      liked_mc.autoSize = "center";
+//      fav_mc.autoSize = "center";
+//     downloadCount_mc.autoSize = "center";
+//      played_mc.autoSize = "center";
 
       var paramList:Object = this.root.loaderInfo.parameters;
       song_id = paramList.song_id ? paramList.song_id : '3220';
@@ -126,14 +127,14 @@ package {
       // TODO: Improve this code
       wait_mc.visible = false;
       title_mc.text = player.muzibooXMLParser.title ;
-      commented_mc.text = player.muzibooXMLParser.comments_count;
-      fav_mc.text = player.muzibooXMLParser.favorites_count;
-      played_mc.text = player.muzibooXMLParser.play_count;
+//      commented_mc.text = player.muzibooXMLParser.comments_count;
+//      fav_mc.text = player.muzibooXMLParser.favorites_count;
+//      played_mc.text = player.muzibooXMLParser.play_count;
 
-      downloadCount_mc.text = player.muzibooXMLParser.downloads_count;
+//      downloadCount_mc.text = player.muzibooXMLParser.downloads_count;
 //      downloadCount_icon_mc.x = commented_mc.x + commented_mc.width + 10;
 
-      liked_mc.text = player.muzibooXMLParser.likes_count;
+//      liked_mc.text = player.muzibooXMLParser.likes_count;
       bitrate_mc.text = player.muzibooXMLParser.bitrate ;
       if(!player.muzibooXMLParser.downloadable){
         download_mc.visible = false
