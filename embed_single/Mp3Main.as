@@ -143,7 +143,7 @@ package {
       if(this.autoplay){
         // Just to make sure
         playPause_mc.playing = true;
-				playPause_mc.gotoAndStop('pause_over');
+				playPause_mc.gotoAndStop('pause');
       }
     }
 		
