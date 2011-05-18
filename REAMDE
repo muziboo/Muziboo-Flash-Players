@@ -1,3 +1,0 @@
-Code for Muziboo's Flash Player. This includes a player for single song (single_player) and a headless swf player that can be controlled using javascript (button_player). FB Player is a smaller Single Player
-
-Code is in action script and UI is in .fla foramt. You need the right tools to compile/tinker with it
